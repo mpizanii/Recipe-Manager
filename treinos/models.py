@@ -1,4 +1,4 @@
-from manage import db  # Importe o db de manage.py
+from extensions import db  
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)

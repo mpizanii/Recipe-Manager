@@ -1,17 +1,16 @@
-from flask import render_template, request, redirect, url_for, flash
-from . import usuario_bp
-from .models import User, db
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from .models import User, db  
 
-@usuario_bp.route('/login', methods=['GET', 'POST'])
+usuario_bp = Blueprint('usuario', __name__, template_folder='templates')
+
+@usuario_bp.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # Adicione lógica de login aqui
-        pass
+        flash("Lógica de login ainda não implementada", "info")
     return render_template('login.html')
 
 @usuario_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        # Adicione lógica de registro aqui
-        pass
+        flash("Lógica de registro ainda não implementada", "info")
     return render_template('register.html')
