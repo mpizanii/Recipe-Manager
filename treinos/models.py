@@ -1,4 +1,4 @@
-from extensions import db  
+from config import db  
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
