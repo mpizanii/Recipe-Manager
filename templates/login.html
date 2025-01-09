@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/static/login.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Usuário">
-        <input type="password" name="password" placeholder="Senha">
-        <button type="submit">Entrar</button>
-    </form>
+    <div class="div_maior">
+        <div class="div_esquerda">
+            <h1>Faça login<br>E Entre para nosso time</h1>
+            <img src="/image/dumbbell.png" alt="logo" class="imagem">
+        </div>
+        <div class="div_direita">
+            <div class="card">
+                <h1>Login</h1>
+                <div class="inputs">
+                    <form method="POST">
+                        <label for="email">Email:</label><br>
+                        <input type="email" name="email" placeholder="Email"><br><br>
+                        <label for="senha">Senha:</label><br>
+                        <input type="password" name="password" placeholder="Senha"><br><br>
+                        <button type="submit" class="entrar">Entrar</button>
+                        </form>
+                        
+                </div>
+                <p>Não possui cadastro? <br> Cadastre-se no botão abaixo</p>
+                <button type="submit" class="cadastrar">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

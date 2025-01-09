@@ -1,6 +1,7 @@
 from flask import Flask
 from config import app_config, app_active
-from routes.usuario import usuario_bp
+from routes.login import login_bp
+from routes.home import home_bp
 from routes.treinos import treinos_bp
 
 config = app_config[app_active]
@@ -11,8 +12,9 @@ def create_app():
     app.config.from_object(config) 
     app.secret_key = config.SECRET_KEY
 
-    app.register_blueprint(usuario_bp)
-    app.register_blueprint(treinos_bp, url_prefix='/treinos')
+    app.register_blueprint(login_bp)
+    app.register_blueprint(home_bp, url_prefix='/gym/tracker')
+    app.register_blueprint(treinos_bp, url_prefix='/workouts')
 
     return app
 

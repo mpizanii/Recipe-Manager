@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.div_maior {
+    width: 100vw;
+    height: 100vh;
+    background-color: #050149;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_esquerda {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div_esquerda h1 {
+    font-size: 40px;
+    color: rgb(199, 199, 199);
+}
+
+.imagem{
+    width: 30vw;
+}
+
+.div_direita {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(199, 199, 199);
+}
+
+.card {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 35px;
+    background: #01192c;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #000000f5;
+}
+
+.card h1 {
+    color: rgb(199, 199, 199);
+    font-weight: 800;
+    text-align: center;
+}
+
+.card p {
+    color: rgb(218, 218, 218);
+    font-size: medium;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputs label {
+    margin-bottom: 5px;
+    color: rgb(199, 199, 199);
+}
+
+.inputs input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 12pt;
+    background-color: rgb(199, 199, 199);;
+    box-shadow: 0px 10px 40px #000000f5;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.entrar, .cadastrar {
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(199, 199, 199);
+    cursor: pointer;
+}
+
+.cadastrar {
+    background-color: rgb(150, 150, 150);
+}
+
