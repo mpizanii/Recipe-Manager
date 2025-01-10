@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/register.css">
 </head>
 <body>
-    
+    <div class="div_maior">
+        <div class="div_esquerda">
+            <h1>Por favor,<br>Preencha com os seus dados</h1>
+            <img src="/static/dumbbell.png" alt="logo">
+        </div>
+        <div class="div_direita">
+            <div class="card">
+                <h1>Cadastro</h1>
+                <div class="inputs">
+                    <form method="POST">
+
+                        <label for="nome">Nome Completo:</label><br>
+                        <input type="nome" name="nome" placeholder="Nome"><br><br>
+
+                        <label for="email">Email:</label><br>
+                        <input type="email" name="email" placeholder="Email"><br><br>
+
+                        <label for="genero">Gênero:</label><br>
+                        <select name="genero" id="genero">
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                        </select><br><br>
+
+                        <label for="data_nascimento">Data de nascimento:</label><br>
+                        <input type="date" name="data_nascimento" placeholder="Data de nascimento"><br><br>
+
+                        <label for="senha">Senha:</label><br>
+                        <input type="password" name="senha" placeholder="Senha"><br><br>
+
+                        <label for="confirmar_senha">Senha:</label><br>
+                        <input type="password" name="confirmar_senha" placeholder="Confirmar Senha"><br><br>
+                        
+                        <button type="submit" class="cadastrar">Cadastrar</button>
+                        </form>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

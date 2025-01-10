@@ -10,23 +10,24 @@
     <div class="div_maior">
         <div class="div_esquerda">
             <h1>Faça login<br>E Entre para nosso time</h1>
-            <img src="/image/dumbbell.png" alt="logo" class="imagem">
+            <img src="/static/dumbbell.png" alt="logo">
         </div>
         <div class="div_direita">
             <div class="card">
                 <h1>Login</h1>
                 <div class="inputs">
                     <form method="POST">
+                        
                         <label for="email">Email:</label><br>
                         <input type="email" name="email" placeholder="Email"><br><br>
+
                         <label for="senha">Senha:</label><br>
-                        <input type="password" name="password" placeholder="Senha"><br><br>
+                        <input type="password" name="senha" placeholder="Senha"><br><br>
+
                         <button type="submit" class="entrar">Entrar</button>
                         </form>
-                        
                 </div>
-                <p>Não possui cadastro? <br> Cadastre-se no botão abaixo</p>
-                <button type="submit" class="cadastrar">Cadastrar</button>
+                <p>Não possui cadastro? <a href="{{ url_for('usuario.form_cadastro') }}">Cadastre-se</a>.</p>
                 </form>
             </div>
         </div>

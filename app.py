@@ -1,8 +1,10 @@
 from flask import Flask
 from config import app_config, app_active
-from routes.login import login_bp
+from routes.login import usuario_bp
 from routes.home import home_bp
 from routes.treinos import treinos_bp
+from models.models import db
+from flask_migrate import Migrate
 
 config = app_config[app_active]
 
@@ -11,10 +13,15 @@ def create_app():
 
     app.config.from_object(config) 
     app.secret_key = config.SECRET_KEY
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
 
-    app.register_blueprint(login_bp)
+    app.register_blueprint(usuario_bp)
     app.register_blueprint(home_bp, url_prefix='/gym/tracker')
     app.register_blueprint(treinos_bp, url_prefix='/workouts')
+
+    db.init_app(app)
+    migrate = Migrate(app, db)
 
     return app
 

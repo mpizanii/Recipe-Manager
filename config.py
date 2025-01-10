@@ -1,8 +1,11 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config(object):
     CSRF_ENABLE = True
-    SECRET_KEY = '6d234996b5456d0fd1c8d59269f24f4c'
+    SECRET_KEY = os.getenv('SECRET_KEY')
     BASE_DIR = os.getcwd()
     APP = None
 
@@ -12,6 +15,7 @@ class DevelopmentConfig(Config):
     IP_HOST = 'localhost'
     PORT_HOST = 8000
     URL_MAIN = f'http://{IP_HOST}:{PORT_HOST}'
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 app_config = {
     'development': DevelopmentConfig(),
