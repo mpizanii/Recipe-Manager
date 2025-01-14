@@ -8,7 +8,7 @@ body {
 .div_maior {
     width: 100vw;
     height: 100vh;
-    background-color: #050149;
+    background-color: #2196F3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,11 +25,12 @@ body {
 
 .div_esquerda h1 {
     font-size: 40px;
-    color: rgb(199, 199, 199);
+    color: #333333;
 }
 
 .div_esquerda img{
-    width: 30vw;
+    width: 25vw;
+    height: auto;
 }
 
 .div_direita {
@@ -37,7 +38,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(199, 199, 199);
+    color: #FFFFFF;
 }
 
 .card {
@@ -46,13 +47,13 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 30px 35px;
-    background: #01192c;
+    background: #FFFFFF;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #000000f5;
 }
 
 .card h1 {
-    color: rgb(199, 199, 199);
+    color: #333333;
     font-weight: 800;
     text-align: center;
 }
@@ -65,7 +66,7 @@ body {
 
 .inputs label {
     margin-bottom: 5px;
-    color: rgb(199, 199, 199);
+    color: #333333;
 }
 
 .inputs input {
@@ -74,19 +75,7 @@ body {
     border-radius: 10px;
     padding: 15px;
     font-size: 12pt;
-    background-color: rgb(199, 199, 199);;
-    box-shadow: 0px 10px 40px #000000f5;
-    outline: none;
-    box-sizing: border-box;
-}
-
-.inputs select{
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 12pt;
-    background-color: rgb(199, 199, 199);;
+    background-color: #FFFFFF;
     box-shadow: 0px 10px 40px #000000f5;
     outline: none;
     box-sizing: border-box;
@@ -97,9 +86,9 @@ body {
     padding: 16px;
     margin-top: 10px;
     font-size: 12pt;
-    color: rgb(255, 255, 255);
+    color: #FFFFFF;
     border: none;
     border-radius: 8px;
-    background-color: #050149;
+    background-color: #333333;
     cursor: pointer;
 }

@@ -5,3 +5,4 @@ mysqlclient==2.2.6
 mysql-connector-python==9.1.0
 Flask-Migrate==4.0.7
 Flask-Script==2.0.6
+google-generativeai==0.8.3

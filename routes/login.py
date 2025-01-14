@@ -38,8 +38,6 @@ def form_cadastro():
 def cadastro():
     nome = request.form['nome']
     email = request.form['email']
-    genero = request.form['genero']
-    data_nascimento = request.form['data_nascimento']
     senha = request.form['senha']
     confirmar_senha = request.form['confirmar_senha']
 
@@ -53,7 +51,7 @@ def cadastro():
         return redirect("/register")
     
     hash_senha = generate_password_hash(senha)
-    novo_usuario = Usuario(nome = nome, email = email, genero = genero, data_nascimento = data_nascimento, senha = hash_senha)
+    novo_usuario = Usuario(nome = nome, email = email, senha = hash_senha)
 
     db.session.add(novo_usuario)
     db.session.commit()

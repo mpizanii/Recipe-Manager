@@ -3,8 +3,7 @@ from flask import render_template, Blueprint
 home_bp = Blueprint('home', __name__, template_folder='templates')
 
 """
-    /gym/tracker/<id> (GET) - home
-    /gym/tracker/<id>/edit (PUT) - formulario para editar perfil
+    /recipes<id> (GET) - home
 """
 @home_bp.route('/')
 def home():

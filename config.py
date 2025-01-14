@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+import google.generativeai as genai
 
 load_dotenv()
 
@@ -16,6 +17,8 @@ class DevelopmentConfig(Config):
     PORT_HOST = 8000
     URL_MAIN = f'http://{IP_HOST}:{PORT_HOST}'
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    gemini_key = os.getenv('GEMINI_KEY')
+    genai.configure(api_key=gemini_key)
 
 app_config = {
     'development': DevelopmentConfig(),
