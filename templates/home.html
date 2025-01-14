@@ -6,8 +6,12 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>
-        Aqui vai a home
-    </h1>
+    <div>
+        <h1>
+            Autenticado
+            <h2>{{ current_user.nome }}</h2>
+        </h1>
+        <a href="{{ url_for('usuario.logout') }}">Sair</a>
+    </div>
 </body>
 </html>

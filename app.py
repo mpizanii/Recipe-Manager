@@ -1,29 +1,36 @@
+import os
 from flask import Flask
 import google.generativeai as genai
-from config import app_config, app_active
-from routes.login import usuario_bp
-from routes.home import home_bp
-from models.models import db
 from flask_migrate import Migrate
+from flask_login import LoginManager
+from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
 
-config = app_config[app_active]
+load_dotenv()
+
+db = SQLAlchemy()
+login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
 
-    app.config.from_object(config) 
-    app.secret_key = config.SECRET_KEY
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+
+    from routes.login import usuario_bp
+    from routes.home import home_bp
 
     app.register_blueprint(usuario_bp)
-    app.register_blueprint(home_bp, url_prefix='/recipes')
+    app.register_blueprint(home_bp, url_prefix = '/recipes')
+
+    gemini_key = os.getenv('GEMINI_KEY')
+    genai.configure(api_key=gemini_key)
 
     db.init_app(app)
     migrate = Migrate(app, db)
 
-    return app
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
 
-if __name__ == '__main__':
-    app = create_app()
-    app.run(host = config.IP_HOST, port = config.PORT_HOST)
+    return app
