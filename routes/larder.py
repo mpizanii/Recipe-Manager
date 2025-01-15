@@ -10,8 +10,8 @@ larder_bp = Blueprint('larder', __name__, template_folder= 'templates')
 """
 
 @larder_bp.route('/', methods = ["GET"])
-def larder():
-    return render_template('larder.html')
+def dispensa():
+    return render_template('dispensa.html')
 
 @larder_bp.route('/add')
 def adicionar_alimento():

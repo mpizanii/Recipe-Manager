@@ -10,8 +10,8 @@ recipes_bp = Blueprint('recipes', __name__, template_folder= 'templates')
 """
 
 @recipes_bp.route('/', methods = ["GET"])
-def recipes():
-    return render_template('recipes.html')
+def receitas():
+    return render_template('receitas.html')
 
 @recipes_bp.route('/add')
 def adicionar_receita():

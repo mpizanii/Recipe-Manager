@@ -9,13 +9,61 @@
 <body>
     <div class="div_cima">
         <h1>
-            Bem vindo de volta, {{ current_user.nome }}
+            Bem vindo, {{ current_user.nome }}!
         </h1>
         <div class = "botoes">
-            <button type="button" class="home">Home</button>
-            <button type="button" class="dispensa">Minha dispensa</button>
-            <button type="button" class="receitas">Minhas Receitas</button>
-            <button type="button" class="perfil">Meu Perfil</button>
+            <div class="botoes_p_esconder">
+                <button type="button" class="home" onclick= "pagina_home()">Home</button>
+                <button type="button" class="dispensa" onclick= "pagina_larder()" >Minha dispensa</button>
+                <button type="button" class="receitas" onclick= "pagina_recipes()">Minhas Receitas</button>
+            </div>
+            <button type="button" class="perfil" onclick= "menu()">Meu Perfil</button>
+            <div class="menu_perfil" id="menu_perfil">
+                <button onclick="pagina_editar_senha()">Editar Senha</button>
+                <button onclick="pagina_logout()">Logout</button>
+            </div>
+
+            <script>
+                function pagina_home(){
+                    window.location.href = '{{ url_for("home.home") }}'
+                }
+                function pagina_larder(){
+                    window.location.href = '{{ url_for("larder.dispensa") }}'
+                }
+                function pagina_recipes(){
+                    window.location.href = '{{ url_for("recipes.receitas") }}'
+                }
+                function pagina_editar_senha(){
+                    window.location.href = '{{ url_for("home.editar_senha") }}'
+                }
+                function pagina_logout(){
+                    window.location.href = '{{ url_for("usuario.logout") }}'
+                }
+
+                function menu(){
+                    const menu = document.getElementById("menu_perfil");
+                    const botoes = document.querySelector('.botoes_p_esconder')
+
+                    if (menu.style.display === 'none' || menu.style.display === ''){
+                        menu.style.display = 'block';
+                        botoes.style.display = 'none';
+                    } else{
+                        menu.style.display = 'none';
+                        botoes.style.display = 'flex';
+                    }
+                }
+
+                document.addEventListener('click', function(event) {
+                    const menu = document.getElementById("menu_perfil");
+                    const perfil_button = document.querySelector('.perfil');
+
+                    if (!menu.contains(event.target) && !perfil_button.contains(event.target)){
+                        menu.style.display = 'none';
+                        document.querySelector('.botoes_p_esconder').style.display = 'flex';
+                    }
+                });
+            </script>
+
         </div>
     </div>
 

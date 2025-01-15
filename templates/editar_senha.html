@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/register.css">
+</head>
+<body>
+    <div class="div_maior">
+        <div class="div_esquerda">
+            <h1>Por favor,<br>Preencha com os seus dados</h1>
+            <img src="/static/logo.png" alt="logo">
+        </div>
+        <div class="div_direita">
+            <div class="card">
+                <h1>Cadastro</h1>
+
+                {% with messages = get_flashed_messages(with_categories=true)%}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class = "flash {{ category }}"> {{ message }} </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <div class="inputs">
+                    <form method="POST">
+
+                        <label for="senha">Senha Atual:</label><br>
+                        <input type="password" name="senha" placeholder="Senha"><br><br>
+
+                        <label for="confirmar_senha">Senha:</label><br>
+                        <input type="password" name="confirmar_senha" placeholder="Confirmar Senha"><br><br>
+
+                        <label for="confirmar_senha">Senha:</label><br>
+                        <input type="password" name="confirmar_senha" placeholder="Confirmar Senha"><br><br>
+                        
+                        <button type="submit" class="cadastrar">Cadastrar</button>
+                        </form>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
