@@ -7,7 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 usuario_bp = Blueprint('usuario', __name__, template_folder='templates')
 """
     / (GET) - formulario de login
-    /register - formulario de cadastro
+    /register (GET)- formulario de cadastro
+    /register (POST) - formulario de cadastro
 """
 
 @usuario_bp.route('/', methods=["GET", "POST"])

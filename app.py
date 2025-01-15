@@ -20,9 +20,11 @@ def create_app():
 
     from routes.login import usuario_bp
     from routes.home import home_bp
+    from routes.larder import larder_bp
 
     app.register_blueprint(usuario_bp)
-    app.register_blueprint(home_bp, url_prefix = '/recipes')
+    app.register_blueprint(home_bp, url_prefix = '/home')
+    app.register_blueprint(larder_bp, url_prefix = '/larder')
 
     gemini_key = os.getenv('GEMINI_KEY')
     genai.configure(api_key=gemini_key)
