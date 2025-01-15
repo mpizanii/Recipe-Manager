@@ -37,4 +37,8 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = 'login'
 
+    login_manager.login_view = 'usuario.login'
+    login_manager.login_message = 'Por favor, realize o login para acessar a home!'
+    login_manager.login_message_category = 'info'
+
     return app

@@ -9,34 +9,34 @@
 <body>
     <div class="div_maior">
         <div class="div_esquerda">
-            <h1>Por favor,<br>Preencha com os seus dados</h1>
+            <h1>Por favor,<br>Preencha com os seus dados<br>E sua nova senha</h1>
             <img src="/static/logo.png" alt="logo">
         </div>
         <div class="div_direita">
             <div class="card">
-                <h1>Cadastro</h1>
+                <h1>Editar Senha</h1>
 
-                {% with messages = get_flashed_messages(with_categories=true)%}
+                {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
-                            <div class = "flash {{ category }}"> {{ message }} </div>
+                            <div class="flash {{ category }}">{{ message }}</div>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
-
+                
                 <div class="inputs">
-                    <form method="POST">
+                    <form method="PUT">
 
                         <label for="senha">Senha Atual:</label><br>
                         <input type="password" name="senha" placeholder="Senha"><br><br>
 
-                        <label for="confirmar_senha">Senha:</label><br>
-                        <input type="password" name="confirmar_senha" placeholder="Confirmar Senha"><br><br>
+                        <label for="nova_senha">Nova senha:</label><br>
+                        <input type="password" name="nova_senha" placeholder="Nova senha"><br><br>
 
-                        <label for="confirmar_senha">Senha:</label><br>
-                        <input type="password" name="confirmar_senha" placeholder="Confirmar Senha"><br><br>
+                        <label for="confirmar_senha">Confirmar nova senha:</label><br>
+                        <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha"><br><br>
                         
-                        <button type="submit" class="cadastrar">Cadastrar</button>
+                        <button type="submit" class="cadastrar">Confirmar</button>
                         </form>
                 </div>
                 </form>

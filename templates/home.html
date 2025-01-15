@@ -74,22 +74,13 @@
                     Minha Dispensa
                 </h1>
                 <ol class="alimentos">
-                    <li>Alimento 1</li>
-                    <li>Alimento 2</li>
-                    <li>Alimento 3</li>
-                    <li>Alimento 4</li>
-                    <li>Alimento 5</li>
-                    <li>Alimento 6</li>
-                    <li>Alimento 7</li>
-                    <li>Alimento 8</li>
-                    <li>Alimento 9</li>
-                    <li>Alimento 10</li>
-                    <li>Alimento 11</li>
-                    <li>Alimento 12</li>
-                    <li>Alimento 13</li>
-                    <li>Alimento 14</li>
-                    <li>Alimento 15</li>
-                    <li>Alimento 16</li>
+                    {% if alimentos %}
+                        {% for alimento in alimentos %}
+                            <li>{{ alimento.nome }} - {{ alimento.quantidade }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <h2>Nenhum alimento cadastrado.</h2>
+                    {% endif %}
                 </ol>
             </div>
         </div>

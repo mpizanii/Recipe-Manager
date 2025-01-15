@@ -15,3 +15,13 @@ class Usuario(UserMixin, db.Model):
     nome = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     senha = db.Column(db.String(200), nullable=False)
+
+    alimentos = db.relationship('Alimentos', back_populates='usuario', cascade="all, delete-orphan")
+
+class Alimentos(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    quantidade = db.Column(db.String(100), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable = False)
+
+    usuario = db.relationship('Usuario', back_populates='alimentos')
