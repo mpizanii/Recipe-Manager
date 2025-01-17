@@ -1,4 +1,6 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, url_for
+from flask_login import current_user
+from models.models import Alimentos
 
 larder_bp = Blueprint('larder', __name__, template_folder= 'templates')
 
@@ -11,16 +13,18 @@ larder_bp = Blueprint('larder', __name__, template_folder= 'templates')
 
 @larder_bp.route('/', methods = ["GET"])
 def dispensa():
-    return render_template('dispensa.html')
+    alimentos = Alimentos.query.filter_by(usuario_id=current_user.id).all()
+
+    return render_template('dispensa.html', alimentos=alimentos)
 
 @larder_bp.route('/add')
 def adicionar_alimento():
     return render_template('adicionar_alimento.html')
 
-@larder_bp.route('/edit', methods = ["PUT"])
+@larder_bp.route('/edit')
 def editar_alimento():
     return render_template('editar_alimento.html')
 
-@larder_bp.route('/edit', methods = ["DELETE"])
+@larder_bp.route('/delete')
 def deletar_alimento():
     return render_template('deletar_alimento.html')

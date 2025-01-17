@@ -79,7 +79,7 @@
                             <li>{{ alimento.nome }} - {{ alimento.quantidade }}</li>
                         {% endfor %}
                     {% else %}
-                        <h2>Nenhum alimento cadastrado.</h2>
+                        <h2>Nenhum alimento cadastrado!</h2>
                     {% endif %}
                 </ol>
             </div>
@@ -91,14 +91,13 @@
                     Minhas Receitas
                 </h1>
                 <ol class="receitas">
-                    <li>Receita 1</li>
-                    <li>Receita 2</li>
-                    <li>Receita 3</li>
-                    <li>Receita 4</li>
-                    <li>Receita 5</li>
-                    <li>Receita 6</li>
-                    <li>Receita 7</li>
-                    <li>Receita 8</li>
+                    {% if receitas %}
+                        {% for receita in receitas %}
+                            <li>{{ receita.nome }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <h2>Nenhuma receita cadastrada!</h2>
+                    {% endif %}
                 </ol>
             </div>
         </div>

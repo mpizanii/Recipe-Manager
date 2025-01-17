@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, request, flash, url_for,redirect
 from flask_login import login_required, current_user
-from models.models import Alimentos, Usuario
+from models.models import Alimentos, Receitas
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -15,7 +15,9 @@ home_bp = Blueprint('home', __name__, template_folder='templates')
 @login_required
 def home():
     alimentos = Alimentos.query.filter_by(usuario_id=current_user.id).all()
-    return render_template('home.html', alimentos=alimentos)
+    receitas = Receitas.query.filter_by(usuario_id=current_user.id).all()
+    
+    return render_template('home.html', alimentos=alimentos, receitas=receitas)
 
 @home_bp.route('/perfil', methods = ["GET", "PUT"])
 def editar_senha():

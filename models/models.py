@@ -17,11 +17,23 @@ class Usuario(UserMixin, db.Model):
     senha = db.Column(db.String(200), nullable=False)
 
     alimentos = db.relationship('Alimentos', back_populates='usuario', cascade="all, delete-orphan")
+    receitas = db.relationship('Receitas', back_populates='usuario', cascade="all, delete-orphan")
 
 class Alimentos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     quantidade = db.Column(db.String(100), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable = False)
+
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable = False, index=True)
 
     usuario = db.relationship('Usuario', back_populates='alimentos')
+
+class Receitas(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    ingredientes = db.Column(db.Text, nullable=False)
+    modo_preparo = db.Column(db.Text, nullable=False)
+
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable = False, index=True)
+
+    usuario = db.relationship('Usuario', back_populates='receitas')

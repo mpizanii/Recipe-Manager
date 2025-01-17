@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dispensa</title>
+    <link rel="stylesheet" href="/static/dispensa.css">
 </head>
 <body>
-    <h1>Você está na dispensa</h1>
+    <div class="div_cima">
+        <h1>
+            Minha dispensa
+        </h1>
+        <div class = "botoes">
+            <button type="button" class="home" onclick= "pagina_home()">Home</button>
+            <button type="button" class="dispensa" onclick= "pagina_larder()" >Minha dispensa</button>
+            <button type="button" class="receitas" onclick= "pagina_recipes()">Minhas Receitas</button>
+        </div>
+    </div>
+
+    <div class="dispensa">
+        <div class="card">
+            <div class = botoes_card>
+                <button type="button" class="adicionar_alimento" onclick= "pagina_adiciona_alimento()">Adicionar Alimentos</button>
+                <button type="button" class="editar_alimento" onclick= "pagina_edita_alimento()">Editar Alimentos</button>
+                <button type="button" class="deletar_alimento" onclick= "pagina_deleta_alimento()">Deletar Alimentos</button>
+            </div>
+            <div class="linha-separadora"></div>
+            <ol class="alimentos">
+                {% if alimentos %}
+                    {% for alimento in alimentos %}
+                        <li>{{ alimento.nome }} - {{ alimento.quantidade }}</li>
+                    {% endfor %}
+                {% else %}
+                    <h2>Nenhum alimento cadastrado!</h2>
+                {% endif %}
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function pagina_home(){
+            window.location.href = '{{ url_for("home.home") }}'
+        }
+        function pagina_larder(){
+            window.location.href = '{{ url_for("larder.dispensa") }}'
+        }
+        function pagina_recipes(){
+            window.location.href = '{{ url_for("recipes.receitas") }}'
+        }
+        function pagina_adiciona_alimento(){
+            window.location.href = '{{ url_for("larder.adicionar_alimento") }}'
+        }
+        function pagina_edita_alimento(){
+            window.location.href = '{{ url_for("larder.editar_alimento") }}'
+        }
+        function pagina_deleta_alimento(){
+            window.location.href = '{{ url_for("larder.deletar_alimento") }}'
+        }
+    </script>
+    
 </body>
 </html>
