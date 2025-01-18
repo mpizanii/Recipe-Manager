@@ -58,18 +58,18 @@ body {
     text-align: center;
 }
 
-.inputs {
+.inputs_perfil, .inputs_senha {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
-.inputs label {
-    margin-bottom: 5px;
+.inputs_perfil label, .inputs_senha label {
+    margin-bottom: 0;
     color: #FFFFFF;
 }
 
-.inputs input {
+.inputs_perfil input, .inputs_senha input {
     width: 100%;
     border: none;
     border-radius: 10px;
@@ -81,7 +81,11 @@ body {
     box-sizing: border-box;
 }
 
-.cadastrar {
+.inputs_perfil{
+    border-bottom: 5px solid #FFFFFF;
+}
+
+.alterar_perfil, .alterar_senha {
     width: 100%;
     padding: 16px;
     margin-top: 10px;
@@ -91,6 +95,10 @@ body {
     border-radius: 8px;
     background-color: #2196F3;
     cursor: pointer;
+}
+
+.alterar_perfil{
+    margin-bottom: 40px;
 }
 
 .flash-messages {

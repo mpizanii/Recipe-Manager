@@ -7,7 +7,6 @@ larder_bp = Blueprint('larder', __name__, template_folder= 'templates')
 """ 
     /larder (GET) - mostrar geladeira
     /larder/add (POST) - formulario para adicionar um alimento
-    /larder/edit (PUT) - formulario para editar um alimento
     /larder/edit (DELETE) - excluir um alimento
 """
 
@@ -20,10 +19,6 @@ def dispensa():
 @larder_bp.route('/add')
 def adicionar_alimento():
     return render_template('adicionar_alimento.html')
-
-@larder_bp.route('/edit')
-def editar_alimento():
-    return render_template('editar_alimento.html')
 
 @larder_bp.route('/delete')
 def deletar_alimento():
