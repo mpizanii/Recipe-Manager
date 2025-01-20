@@ -1,4 +1,7 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, url_for, request, flash,redirect
+from flask_login import current_user
+from models.models import Receitas
+from app import db
 
 recipes_bp = Blueprint('recipes', __name__, template_folder= 'templates')
 
@@ -14,9 +17,19 @@ recipes_bp = Blueprint('recipes', __name__, template_folder= 'templates')
 def receitas():
     return render_template('receitas.html')
 
-@recipes_bp.route('/add')
+@recipes_bp.route('/add', methods = ["POST"])
 def adicionar_receita():
-    return render_template('adicionar_receita.html')
+    nome = request.form.get('nome')
+    ingredientes = request.form.get('ingredientes')
+    modo_preparo = request.form.get('modo_preparo')
+    usuario_id = current_user.id
+
+    nova_receita = Receitas(nome = nome, ingredientes = ingredientes, modo_preparo = modo_preparo, usuario_id = usuario_id)
+
+    db.session.add(nova_receita)
+    db.session.commit()
+
+    return redirect(url_for('home.home'))
 
 @recipes_bp.route('/edit')
 def editar_receita():

@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%; 
-    overflow: hidden; 
+    overflow-x: hidden;
     font-family: 'Noto Sans', sans-serif;
     background-color: #F5F5DC;
 }
@@ -160,7 +160,7 @@ body {
     justify-content: space-around;
 }
 
-#modal_adicionar_alimento, #modal_deletar_alimento{
+#modal_adicionar_alimento, #modal_deletar_alimento, #modal_adicionar_receita{
     background-color: #00233f;
     border-radius: 20px;
     color: #FFFFFF;
@@ -168,15 +168,15 @@ body {
     box-shadow: 0px 10px 40px #000000f5;
 }
 
-#modal_adicionar_alimento h2, #modal_deletar_alimento h2{
+#modal_adicionar_alimento h2, #modal_deletar_alimento h2, #modal_adicionar_receita h2{
     text-align: center;
 }
 
-#modal_adicionar_alimento label{
+#modal_adicionar_alimento label, #modal_adicionar_receita label{
     margin-bottom: 5px;
 }
 
-#modal_adicionar_alimento input{
+#modal_adicionar_alimento input, #modal_adicionar_receita input, #modal_adicionar_receita textarea{
     width: 100%;
     border: none;
     border-radius: 10px;

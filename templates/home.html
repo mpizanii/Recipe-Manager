@@ -58,6 +58,25 @@
                     </form>
                 </div>
             </div>
+
+            <div id="modal_adicionar_receita" style="display: none;">
+                <div class="modal_content">
+                    <h2>Adicionar Receita</h2>
+                    <form method="POST" action="{{ url_for('recipes.adicionar_receita') }}">
+                        <label for="nome">Nome:</label><br>
+                        <input type="text" name="nome" placeholder="Nome"><br><br>
+    
+                        <label for="ingredientes">Ingredientes:</label><br>
+                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="Ingredientes"></textarea><br><br>
+
+                        <label for="modo_preparo">Modo de preparo:</label><br>
+                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="Modo de preparo"></textarea><br><br>
+
+                        <button type="submit" class="adicionar">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+
         </div>
 
         <div class="dispensa">
@@ -85,13 +104,13 @@
                     {% endif %}
                 </ol>
         </div>
-    
+
         <div class="receitas">
             <h1>
                 Minhas Receitas
 
                 <div class="funcoes">
-                    <a href="{{ url_for('recipes.adicionar_receita') }}" class="adicionar_receita">
+                    <a href="#" class="adicionar_receita" onclick="toggleModal('modal_adicionar_receita')">
                         <i class="bi bi-plus"></i>
                     </a>
     
@@ -115,12 +134,13 @@
         </div>
 
     </div>
+
     <script>
         function toggleModal(modalID){
             const modal = document.getElementById(modalID);
             if (modal.style.display === 'none' || modal.style.display === ''){
                 modal.style.display = 'flex';
-            }else{
+            } else{
                 modal.style.display = 'none';
             }
         }
