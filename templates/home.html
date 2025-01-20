@@ -14,7 +14,7 @@
         </a>
         <h1>
             Bem vindo, {{ current_user.nome }}!
-        </h1>
+        </h1>   
         <a href="{{ url_for('home.editar_perfil') }}" class="button_perfil">
             <i class="bi bi-person-circle"></i>
         </a>
@@ -22,16 +22,54 @@
 
     <div class="card">
 
+        <div class="modal">
+            <div id="modal_adicionar_alimento" style="display: none;">
+                <div class="modal_content">
+                    <h2>Adicionar Alimentos</h2>
+                    <form method="POST" action="{{ url_for('larder.adicionar_alimento') }}">
+                        <label for="nome">Nome do alimento:</label><br>
+                        <input type="text" name="nome" placeholder="Nome"><br><br>
+    
+                        <label for="quantidade">Quantidade:</label><br>
+                        <input type="text" name="quantidade" placeholder="Quantidade"><br><br>
+    
+                        <button type="submit" class="adicionar">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+    
+            <div id="modal_deletar_alimento" style="display: none;">
+                <div class="modal_content">
+                    <h2>Selecione os alimentos que deseja deletar:</h2>
+                    <form method="POST" action="{{ url_for('larder.deletar_alimento') }}">
+                        <ul>
+                            {% if alimentos %}
+                                {% for alimento in alimentos %}
+                                    <li>
+                                        <input type= "checkbox" id="alimento_{{ alimento.id }}" name="alimentos" value="{{ alimento.id }}">
+                                        <label for="alimento_{{ alimento.id }}">{{ alimento.nome }} - {{ alimento.quantidade }}</label>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <h2>Nenhum alimento cadastrado!</h2>
+                            {% endif %}
+                        </ul>
+                        <button type="submit", class="deletar">Deletar alimentos</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div class="dispensa">
             <h1>
                 Minha Dispensa
                 
                 <div class="acoes">
-                    <a href="{{ url_for('larder.adicionar_alimento') }}" class="adicionar_alimento">
+                    <a href="#" class="adicionar_alimento" onclick="toggleModal('modal_adicionar_alimento')">
                         <i class="bi bi-plus"></i>
                     </a>
-    
-                    <a href="{{ url_for('larder.deletar_alimento') }}" class="deletar_alimento">
+            
+                    <a href="#" class="deletar_alimento" onclick="toggleModal('modal_deletar_alimento')">
                         <i class="bi bi-x-lg"></i>
                     </a>
                 </div>
@@ -77,6 +115,16 @@
         </div>
 
     </div>
-
+    <script>
+        function toggleModal(modalID){
+            const modal = document.getElementById(modalID);
+            if (modal.style.display === 'none' || modal.style.display === ''){
+                modal.style.display = 'flex';
+            }else{
+                modal.style.display = 'none';
+            }
+        }
+        
+    </script>
 </body>
 </html>

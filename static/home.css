@@ -151,6 +151,55 @@ body {
     font-size: 20px;
 }
 
-.dispensa h2, .receitas h2{
+.dispensa h2, .receitas h2, .modal_content h2{
     width: 20vw;
+}
+
+.modal{
+    display: flex;
+    justify-content: space-around;
+}
+
+#modal_adicionar_alimento, #modal_deletar_alimento{
+    background-color: #00233f;
+    border-radius: 20px;
+    color: #FFFFFF;
+    padding: 15px;
+    box-shadow: 0px 10px 40px #000000f5;
+}
+
+#modal_adicionar_alimento h2, #modal_deletar_alimento h2{
+    text-align: center;
+}
+
+#modal_adicionar_alimento label{
+    margin-bottom: 5px;
+}
+
+#modal_adicionar_alimento input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 12pt;
+    background-color: #FFFFFF;
+    box-shadow: 0px 10px 40px #000000f5;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.adicionar, .deletar{
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    font-size: 12pt;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    background-color: #2196F3;
+    cursor: pointer;
+}
+
+#modal_deletar_alimento ul{
+    list-style: none;
 }

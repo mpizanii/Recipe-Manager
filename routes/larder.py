@@ -1,6 +1,7 @@
-from flask import render_template, Blueprint, url_for
+from flask import render_template, Blueprint, url_for, request, flash,redirect
 from flask_login import current_user
 from models.models import Alimentos
+from app import db
 
 larder_bp = Blueprint('larder', __name__, template_folder= 'templates')
 
@@ -16,10 +17,27 @@ def dispensa():
 
     return render_template('dispensa.html', alimentos=alimentos)
 
-@larder_bp.route('/add')
+@larder_bp.route('/add', methods = ["POST"])
 def adicionar_alimento():
-    return render_template('adicionar_alimento.html')
+    nome = request.form.get('nome')
+    quantidade = request.form.get('quantidade')
+    usuario_id = current_user.id
 
-@larder_bp.route('/delete')
+    novo_alimento = Alimentos(nome = nome, quantidade = quantidade, usuario_id = usuario_id)
+
+    db.session.add(novo_alimento)
+    db.session.commit()
+
+    return redirect(url_for('home.home'))
+    
+
+@larder_bp.route('/delete', methods = ["POST"])
 def deletar_alimento():
-    return render_template('deletar_alimento.html')
+    alimentos_ids = request.form.getlist('alimentos')
+
+    for alimento_id in alimentos_ids:
+        Alimentos.query.filter_by(id = alimento_id).delete()
+
+    db.session.commit()
+
+    return redirect(url_for('home.home'))
