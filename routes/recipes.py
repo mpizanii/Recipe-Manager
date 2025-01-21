@@ -2,6 +2,7 @@ from flask import render_template, Blueprint, url_for, request, flash,redirect
 from flask_login import current_user
 from models.models import Receitas
 from app import db
+import re
 
 recipes_bp = Blueprint('recipes', __name__, template_folder= 'templates')
 
@@ -13,9 +14,31 @@ recipes_bp = Blueprint('recipes', __name__, template_folder= 'templates')
     /recipes/ia - consulta ao gemini
 """
 
-@recipes_bp.route('/', methods = ["GET"])
-def receitas():
-    return render_template('receitas.html')
+def get_ingredientes(id):
+
+    receita = Receitas.query.get_or_404(id)
+
+    lista_ingredientes = [item.strip() for item in re.split(r'[;,.]', receita.ingredientes) if item.strip()]
+
+    ingredientes_formatados = "\n".join([f'{i}: {ingrediente}.' for i, ingrediente in enumerate(lista_ingredientes, 1)])
+
+    return ingredientes_formatados
+    
+def get_modo_preparo(id):
+
+    receita = Receitas.query.get_or_404(id)
+
+    lista_modo_preparo = [passo.strip() for passo in re.split(r'\d+[-.]\s*', receita.modo_preparo) if passo.strip()]
+
+    passos_formatados = "\n".join([f'Passo {i}: {passo}' for i, passo in enumerate(lista_modo_preparo, 1)])
+
+    return passos_formatados
+
+@recipes_bp.route('/<int:id>', methods = ["GET"])
+def receitas(id):
+    receita = Receitas.query.get_or_404(id)
+
+    return render_template('receitas.html', receita = receita, lista_ingredientes = get_ingredientes(id), lista_modo_preparo = get_modo_preparo(id))
 
 @recipes_bp.route('/add', methods = ["POST"])
 def adicionar_receita():

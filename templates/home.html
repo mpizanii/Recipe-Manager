@@ -67,10 +67,12 @@
                         <input type="text" name="nome" placeholder="Nome"><br><br>
     
                         <label for="ingredientes">Ingredientes:</label><br>
-                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="Ingredientes"></textarea><br><br>
+                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="Ingrediente 1; Ingrediente 2;..."></textarea><br><br>
 
                         <label for="modo_preparo">Modo de preparo:</label><br>
-                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="Modo de preparo"></textarea><br><br>
+                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1- Passo 1.
+                                     2- Passo 2.
+                                     3- ..."></textarea><br><br>
 
                         <button type="submit" class="adicionar">Adicionar</button>
                     </form>
@@ -123,7 +125,7 @@
             <ol class="receitas">
                 {% if receitas %}
                     {% for receita in receitas %}
-                        <a href="{{ url_for('recipes.receitas') }}">
+                        <a href="{{ url_for('recipes.receitas', id = (receita.id)) }}" >
                             <li>{{ receita.nome }}</li>
                         </a>
                     {% endfor %}
