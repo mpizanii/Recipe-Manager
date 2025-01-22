@@ -6,6 +6,7 @@
     <title>{{ receita.nome }}</title>
     <link rel="stylesheet" href="/static/receitas.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="div_cima">
@@ -15,15 +16,38 @@
         <h1>
             {{ receita.nome }}
         </h1>   
-        <a href="{{ url_for('recipes.editar_receita') }}" class="button_perfil">
-            <i class="bi bi-person-circle"></i>
-        </a>
-        <a href="{{ url_for('recipes.deletar_receita') }}" class="button_perfil">
-            <i class="bi bi-person-circle"></i>
-        </a>
+        <div class="acoes_receitas">
+            <a href="#" class="button_editar_receita" onclick="toggleModal('modal_editar_receita')">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="#" class="button_deletar_receita" onclick= "confirmar_delecao()">
+                <i class="bi bi-trash"></i>
+            </a>
+        </div>
     </div>
 
     <div class="card">
+
+        <div id="modal_editar_receita" style="display: none;">
+            <div class="modal_content">
+                <h2>Adicionar Receita</h2>
+                <form method="POST" action="{{ url_for('recipes.editar_receita') }}">
+                    <label for="nome">Nome:</label><br>
+                    <input type="text" name="nome" placeholder="Nome"><br><br>
+
+                    <label for="ingredientes">Ingredientes:</label><br>
+                    <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="Ingrediente 1; Ingrediente 2;..."></textarea><br><br>
+
+                    <label for="modo_preparo">Modo de preparo:</label><br>
+                    <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1- Passo 1.
+                                 2- Passo 2.
+                                 3- ..."></textarea><br><br>
+
+                    <button type="submit" class="adicionar">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
         <div class="ingredientes">
             <h1>Ingredientes</h1>
                 <ol class="ingredientes">
@@ -39,5 +63,36 @@
         </div>
 
     </div>
+
+    <script>
+        function confirmar_delecao() {
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: 'Esta ação não pode ser desfeita!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sim, deletar!',
+                cancelButtonText: 'Cancelar',
+                background: '#00233f',
+                color: '#FFFFFF',
+                iconColor: '#FFFFFF'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href ="{{ url_for('recipes.deletar_receita') }}";
+                }   
+            });
+        }
+        function toggleModal(modalID){
+            const modal = document.getElementById(modalID);
+            if (modal.style.display === 'none' || modal.style.display === ''){
+                modal.style.display = 'flex';
+            } else{
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+
 </body>
 </html>
