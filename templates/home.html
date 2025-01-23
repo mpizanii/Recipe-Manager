@@ -10,13 +10,13 @@
 <body>
     <div class="div_cima">
         <a href="{{ url_for('usuario.logout') }}" class="button_logout">
-            <i class="bi bi-arrow-bar-left"></i>
+            <i class="bi bi-arrow-bar-left">Sair</i>
         </a>
         <h1>
-            Bem vindo, {{ current_user.nome }}!
+            Bem vindo(a), {{ current_user.nome }}!
         </h1>   
         <a href="{{ url_for('home.editar_perfil') }}" class="button_perfil">
-            <i class="bi bi-person-circle"></i>
+            <i class="bi bi-person-circle">Editar Perfil</i>
         </a>
     </div>
 
@@ -100,9 +100,9 @@
 
         </div>
 
-        <div class="dispensa">
+        <div class="despensa">
             <h1>
-                Minha Dispensa
+                Minha despensa
                 
                 <div class="acoes">
                     <a href="#" class="adicionar_alimento" onclick="toggleModal('modal_adicionar_alimento')">

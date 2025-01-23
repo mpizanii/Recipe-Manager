@@ -11,17 +11,17 @@
 <body>
     <div class="div_cima">
         <a href="{{ url_for('home.home') }}" class="button_home">
-            <i class="bi bi-arrow-return-left"></i>
+            <i class="bi bi-arrow-return-left">Retornar</i>
         </a>
         <h1>
             {{ receita.nome }}
         </h1>   
         <div class="acoes_receitas">
             <a href="#" class="button_editar_receita" onclick="toggleModal('modal_editar_receita')">
-                <i class="bi bi-pencil-square"></i>
+                <i class="bi bi-pencil-square">Editar</i>
             </a>
             <a href="#" class="button_deletar_receita" onclick="confirmar_delecao()">
-                <i class="bi bi-trash"></i>
+                <i class="bi bi-trash">Deletar</i>
             </a>
         </div>
     </div>

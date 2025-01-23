@@ -62,7 +62,7 @@ body {
     background-color: #2196F3;
 }
 
-.dispensa h1, .receitas h1{
+.despensa h1, .receitas h1{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -142,16 +142,16 @@ body {
     height: calc(65vh); 
 }
 
-.dispensa h1, .receitas h1{
+.despensa h1, .receitas h1{
     width: 70vw;
     border-bottom: 3px solid #00233f;
 }
 
-.dispensa li, .receitas li{
+.despensa li, .receitas li{
     font-size: 20px;
 }
 
-.dispensa h2, .receitas h2, .modal_content h2{
+.despensa h2, .receitas h2, .modal_content h2{
     width: 20vw;
 }
 
