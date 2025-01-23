@@ -35,7 +35,7 @@
 1. **Clone o repositórtio:**
     ```bash
     git clone https://github.com/mpizanii/Recipe-Manager
-    cd recipe
+    cd Recipe-Manager
     ```
 2. **Crie um ambiente virtual**
     ```bash
