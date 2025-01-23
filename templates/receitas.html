@@ -20,7 +20,7 @@
             <a href="#" class="button_editar_receita" onclick="toggleModal('modal_editar_receita')">
                 <i class="bi bi-pencil-square"></i>
             </a>
-            <a href="#" class="button_deletar_receita" onclick= "confirmar_delecao()">
+            <a href="#" class="button_deletar_receita" onclick="confirmar_delecao()">
                 <i class="bi bi-trash"></i>
             </a>
         </div>
@@ -28,23 +28,23 @@
 
     <div class="card">
 
-        <div id="modal_editar_receita" style="display: none;">
-            <div class="modal_content">
-                <h2>Adicionar Receita</h2>
-                <form method="POST" action="{{ url_for('recipes.editar_receita') }}">
-                    <label for="nome">Nome:</label><br>
-                    <input type="text" name="nome" placeholder="Nome"><br><br>
-
-                    <label for="ingredientes">Ingredientes:</label><br>
-                    <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="Ingrediente 1; Ingrediente 2;..."></textarea><br><br>
-
-                    <label for="modo_preparo">Modo de preparo:</label><br>
-                    <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1- Passo 1.
-                                 2- Passo 2.
-                                 3- ..."></textarea><br><br>
-
-                    <button type="submit" class="adicionar">Adicionar</button>
-                </form>
+        <div class="modal">
+            <div id="modal_editar_receita" style="display: none;">
+                <div class="modal_content">
+                    <h2>Editar Receita</h2>
+                    <form method="POST" action="{{ url_for('recipes.editar_receita', id = (receita.id)) }}">
+                        <label for="nome">Nome:</label><br>
+                        <input type="text" name="nome" value="{{ receita.nome }}"><br><br>
+    
+                        <label for="ingredientes">Ingredientes:</label><br>
+                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="1-...&#10;2-...&#10;3-...">{{ receita.ingredientes }}</textarea><br><br>
+    
+                        <label for="modo_preparo">Modo de preparo:</label><br>
+                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1-...&#10;2-...&#10;3-...">{{ receita.modo_preparo }}</textarea><br><br>
+    
+                        <button type="submit" class="confirmar">Confirmar</button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -64,6 +64,8 @@
 
     </div>
 
+    <form id="delete" method="POST" action="{{ url_for('recipes.deletar_receita', id=receita.id) }}" style="display: none;"></form>
+
     <script>
         function confirmar_delecao() {
             Swal.fire({
@@ -80,10 +82,11 @@
                 iconColor: '#FFFFFF'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href ="{{ url_for('recipes.deletar_receita') }}";
+                    document.getElementById('delete').submit();
                 }   
             });
         }
+
         function toggleModal(modalID){
             const modal = document.getElementById(modalID);
             if (modal.style.display === 'none' || modal.style.display === ''){

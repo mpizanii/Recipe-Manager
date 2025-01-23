@@ -67,14 +67,33 @@
                         <input type="text" name="nome" placeholder="Nome"><br><br>
     
                         <label for="ingredientes">Ingredientes:</label><br>
-                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="Ingrediente 1; Ingrediente 2;..."></textarea><br><br>
+                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="1-...&#10;2-...&#10;3-..."></textarea><br><br>
 
                         <label for="modo_preparo">Modo de preparo:</label><br>
-                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1- Passo 1.
-                                     2- Passo 2.
-                                     3- ..."></textarea><br><br>
+                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1-...&#10;2-...&#10;3-..."></textarea><br><br>
 
                         <button type="submit" class="adicionar">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="modal_receita_ia" style="display: none;">
+                <div class="modal_content">
+                    <h2>Selecione os alimentos que deseja adicionar a receita:</h2>
+                    <form method="POST" action="{{ url_for('recipes.receita_ia') }}">
+                        <ul>
+                            {% if alimentos %}
+                                {% for alimento in alimentos %}
+                                    <li>
+                                        <input type= "checkbox" id="alimento_{{ alimento.id }}" name="alimentos" value="{{ alimento.id }}">
+                                        <label for="alimento_{{ alimento.id }}">{{ alimento.nome }} - {{ alimento.quantidade }}</label>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <h2>Nenhum alimento cadastrado!</h2>
+                            {% endif %}
+                        </ul>
+                        <button type="submit", class="confirmar">Confirmar</button>
                     </form>
                 </div>
             </div>
@@ -116,7 +135,7 @@
                         <i class="bi bi-plus"></i>
                     </a>
     
-                    <a href="{{ url_for('recipes.receita_ia') }}" class="receita_ia">
+                    <a href="#" class="receita_ia" onclick="toggleModal('modal_receita_ia')">
                         <i class="bi bi-robot"></i>
                     </a>
                 </div>
@@ -145,8 +164,8 @@
             } else{
                 modal.style.display = 'none';
             }
-        }
-        
+        }      
     </script>
+
 </body>
 </html>

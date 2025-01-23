@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-import google.generativeai as genai
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from dotenv import load_dotenv
@@ -27,9 +26,6 @@ def create_app():
     app.register_blueprint(home_bp, url_prefix = '/home')
     app.register_blueprint(larder_bp, url_prefix = '/larder')
     app.register_blueprint(recipes_bp, url_prefix = '/recipes')
-
-    gemini_key = os.getenv('GEMINI_KEY')
-    genai.configure(api_key=gemini_key)
 
     db.init_app(app)
     migrate = Migrate(app, db)
