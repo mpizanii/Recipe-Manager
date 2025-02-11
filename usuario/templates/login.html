@@ -4,40 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="usuario/static/login.css">
 </head>
 <body>
     <div class="div_maior">
         <div class="div_esquerda">
             <h1>Por favor,<br>Faça login com as suas credenciais.</h1>
-            <img src="/static/img/chef.svg" alt="chef">
+            <img src="usuario/static/img/chef.svg" alt="chef">
         </div>
         <div class="div_direita">
             <div class="card">
                 <h1>Login</h1>
-
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="flash {{ category }}">{{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
                 
                 <div class="inputs">
                     <form method="POST">
+                        {% csrf_token %}
                         
                         <label for="email">Email:</label><br>
-                        <input type="email" name="email" placeholder="Email"><br><br>
+                        <input type="email" name="email" placeholder="Email" required><br><br>
 
                         <label for="senha">Senha:</label><br>
-                        <input type="password" name="senha" placeholder="Senha"><br><br>
+                        <input type="password" name="senha" placeholder="Senha" required><br><br>
 
                         <button type="submit" class="entrar">Entrar</button>
-                        </form>
+                    </form>
                 </div>
-                <p>Não possui cadastro? <a href="{{ url_for('usuario.form_cadastro') }}">Cadastre-se</a>.</p>
-                </form>
             </div>
         </div>
     </div>
