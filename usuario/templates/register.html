@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="/static/register.css">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'register.css' %}">
 </head>
 <body>
     <div class="div_maior">
         <div class="div_esquerda">
             <h1>Por favor,<br>Preencha com os seus dados.</h1>
-            <img src="/static/img/sushi.svg" alt="logo">
+            <img src="{% static 'img/sushi.svg' %}" alt="logo">
         </div>
         <div class="div_direita">
             <div class="card">
-                <h1>Cadastro</h1>
 
-                {% with messages = get_flashed_messages(with_categories=true)%}
                     {% if messages %}
-                        {% for category, message in messages %}
-                            <div class = "flash {{ category }}"> {{ message }} </div>
+                        {% for message in messages %}
+                            <div class = "alert {{ message.tags }}"> {{ message }} </div>
                         {% endfor %}
                     {% endif %}
-                {% endwith %}
+
+                <h1>Cadastro</h1>
 
                 <div class="inputs">
                     <form method="POST">
-
+                        {% csrf_token %}
                         <label for="nome">Nome Completo:</label><br>
                         <input type="nome" name="nome" placeholder="Nome"><br><br>
 

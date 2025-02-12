@@ -4,31 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="usuario/static/login.css">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
 </head>
 <body>
     <div class="div_maior">
         <div class="div_esquerda">
             <h1>Por favor,<br>Faça login com as suas credenciais.</h1>
-            <img src="usuario/static/img/chef.svg" alt="chef">
+            <img src="{% static 'img/chef.svg' %}" alt="chef">
         </div>
         <div class="div_direita">
             <div class="card">
-                <h1>Login</h1>
                 
-                <div class="inputs">
-                    <form method="POST">
-                        {% csrf_token %}
-                        
-                        <label for="email">Email:</label><br>
-                        <input type="email" name="email" placeholder="Email" required><br><br>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} ">{{ message }}</div>
+                    {% endfor %} 
+                {% endif %}
 
-                        <label for="senha">Senha:</label><br>
-                        <input type="password" name="senha" placeholder="Senha" required><br><br>
+                <h1>Login</h1>
+
+                <div class="inputs">
+                    <form method="POST"> 
+                        {% csrf_token %}
+
+                        <div class="username">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+
+                        <div class="password">
+                            {{ form.password.label_tag }}
+                            {{ form.password }}
+                        </div>
 
                         <button type="submit" class="entrar">Entrar</button>
                     </form>
+                    <p>Não possui cadastro? <a href="{% url 'usuario:register' %}">Cadastre-se.</a> </p>
                 </div>
+
             </div>
         </div>
     </div>
