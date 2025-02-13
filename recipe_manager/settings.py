@@ -19,6 +19,8 @@ INSTALLED_APPS = [
     'home',
 ]
 
+AUTH_USER_MODEL = 'usuario.Usuario'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -74,8 +76,6 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', 
 ]
-
-AUTH_USER_MODEL = 'usuario.Usuario'
 
 LANGUAGE_CODE = 'pt-br'
 

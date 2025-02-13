@@ -14,12 +14,15 @@ def login_view(request):
             usuario = authenticate(username = username, password = password)
 
             if usuario is not None:
+                print('autenticado')
                 login(request, usuario)
                 return redirect('home:home')
             else:
+                print("não autenticado")
                 messages.error(request, "Credenciais incorretas. Tente novamente!")
     else:
-         form = CustomLoginForm()
+        print('invalido')
+        form = CustomLoginForm()
         
     return render(request, 'login.html', {'form':form})
 

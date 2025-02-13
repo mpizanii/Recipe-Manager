@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'login.css' %}">
 </head>
 <body>
+
     <div class="div_maior">
         <div class="div_esquerda">
             <h1>Por favor,<br>Faça login com as suas credenciais.</h1>
@@ -16,11 +16,13 @@
         </div>
         <div class="div_direita">
             <div class="card">
-                
+
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="alert {{ message.tags }} ">{{ message }}</div>
-                    {% endfor %} 
+                    <div class="alert {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
                 {% endif %}
 
                 <h1>Login</h1>
