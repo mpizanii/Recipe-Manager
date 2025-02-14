@@ -17,11 +17,11 @@
         <div class="div_direita">
             <div class="card">
 
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class = "alert {{ message.tags }}"> {{ message }} </div>
-                        {% endfor %}
-                    {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class = "alert {{ message.tags }}"> {{ message }} </div>
+                    {% endfor %}
+                {% endif %}
 
                 <h1>Cadastro</h1>
 

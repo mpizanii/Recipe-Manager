@@ -101,7 +101,7 @@ body {
     width: 300px;
 }
 
-.flash {
+.alert {
     margin-bottom: 10px;
     padding: 15px;
     border-radius: 5px;
@@ -111,18 +111,10 @@ body {
     animation: fadeInOut 4s forwards;
 }
 
-.flash.info {
-    background-color: #3498db;
-}
-
-.flash.success {
+.success {
     background-color: #2ecc71; 
 }
 
-.flash.warning {
-    background-color: #f1c40f; 
-}
-
-.flash.danger {
-    background-color: #e74c3c; 
+.error {
+    background-color: #e74c3c;
 }

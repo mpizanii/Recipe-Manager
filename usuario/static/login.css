@@ -72,15 +72,10 @@ body {
 }
 
 .inputs label {
-    color: #FFFFFF;
-    display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    color: #FFFFFF;
 }
 
-.password label{
-    margin-top: 10px;
-}
 
 .inputs input {
     width: 100%;

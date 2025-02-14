@@ -19,9 +19,7 @@
 
                 {% if messages %}
                     {% for message in messages %}
-                    <div class="alert {{ message.tags }}">
-                        {{ message }}
-                    </div>
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
                     {% endfor %}
                 {% endif %}
 
@@ -30,17 +28,11 @@
                 <div class="inputs">
                     <form method="POST"> 
                         {% csrf_token %}
+                        <label for="email">Email:</label>
+                        <input type="text" name="Email" placeholder="Email..."><br><br>
 
-                        <div class="username">
-                            {{ form.username.label_tag }}
-                            {{ form.username }}
-                        </div>
-
-                        <div class="password">
-                            {{ form.password.label_tag }}
-                            {{ form.password }}
-                        </div>
-
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" placeholder="Senha..."><br><br>
                         <button type="submit" class="entrar">Entrar</button>
                     </form>
                     <p>Não possui cadastro? <a href="{% url 'usuario:register' %}">Cadastre-se.</a> </p>

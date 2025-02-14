@@ -1,48 +1,47 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-from .forms import CustomLoginForm
+from .models import Usuario
 from django.contrib import messages
 
 def login_view(request):
     if request.method == 'POST':
-        form = CustomLoginForm(data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
 
-            usuario = authenticate(username = username, password = password)
+        usuario = authenticate(username = email, password = senha)
 
-            if usuario is not None:
-                print('autenticado')
-                login(request, usuario)
-                return redirect('home:home')
-            else:
-                print("não autenticado")
-                messages.error(request, "Credenciais incorretas. Tente novamente!")
-    else:
-        print('invalido')
-        form = CustomLoginForm()
-        
-    return render(request, 'login.html', {'form':form})
+        print(usuario)
+
+        if usuario is not None:
+            print(usuario)
+            login(request, usuario)
+            return redirect('home:home')
+        else:
+            print("Autenticação falhou:", usuario)
+            messages.error(request, "Credenciais incorretas. Tente novamente!")
+
+    return render(request, 'login.html')
 
 def register(request):
     if request.method == 'POST':
-            nome = request.form['nome']
-            email = request.form['email']
-            senha = request.form['senha']
-            confirmar_senha = request.form['confirmar_senha']
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        confirmar_senha = request.POST.get('confirmar_senha')
 
-            usuario_existente = User.objects.get(email = email)
+        if senha != confirmar_senha:
+            messages.error(request, "As senhas não coincidem!")
+            return render(request, 'register.html')
 
-            if usuario_existente:
-                messages.error(request, "Este e-mail já está cadastrado")
-            
-            elif senha != confirmar_senha:
-                messages.error(request, "Senhas não coincidem!")
-            
+        if Usuario.objects.filter(email=email).exists():
+            messages.error(request, "Este e-mail já está cadastrado!")
+            return render(request, 'register.html')
 
-            return redirect('usuario:login')
+        usuario = Usuario.objects.create_user(username=nome, email=email, password= senha)
+        usuario.save()
+
+        messages.success(request, "Cadastro realizado com sucesso! Faça login para continuar.")
+        return redirect('usuario:login')
 
     return render(request, 'register.html')
 
