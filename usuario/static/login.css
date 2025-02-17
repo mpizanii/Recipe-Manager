@@ -71,13 +71,14 @@ body {
     gap: 10px;
 }
 
-.inputs label {
+.formulario label {
+    display: block;
     margin-bottom: 5px;
     color: #FFFFFF;
 }
 
-
-.inputs input {
+.formulario input {
+    margin-bottom: 15px;
     width: 100%;
     border: none;
     border-radius: 10px;

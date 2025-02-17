@@ -19,20 +19,16 @@
 
                 {% if messages %}
                     {% for message in messages %}
-                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                        <div class="alert {{ message.tags }}">{{ message }}</div>
                     {% endfor %}
                 {% endif %}
 
                 <h1>Login</h1>
 
                 <div class="inputs">
-                    <form method="POST"> 
+                    <form method="POST" class="formulario"> 
                         {% csrf_token %}
-                        <label for="email">Email:</label>
-                        <input type="text" name="Email" placeholder="Email..."><br><br>
-
-                        <label for="senha">Senha:</label>
-                        <input type="password" name="senha" placeholder="Senha..."><br><br>
+                        {{ form }}
                         <button type="submit" class="entrar">Entrar</button>
                     </form>
                     <p>Não possui cadastro? <a href="{% url 'usuario:register' %}">Cadastre-se.</a> </p>

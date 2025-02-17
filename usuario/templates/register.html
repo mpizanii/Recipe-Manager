@@ -26,20 +26,9 @@
                 <h1>Cadastro</h1>
 
                 <div class="inputs">
-                    <form method="POST">
+                    <form method="POST" class="formulario">
                         {% csrf_token %}
-                        <label for="nome">Nome Completo:</label><br>
-                        <input type="nome" name="nome" placeholder="Nome"><br><br>
-
-                        <label for="email">Email:</label><br>
-                        <input type="email" name="email" placeholder="Email"><br><br>
-
-                        <label for="senha">Senha:</label><br>
-                        <input type="password" name="senha" placeholder="Senha"><br><br>
-
-                        <label for="confirmar_senha">Senha:</label><br>
-                        <input type="password" name="confirmar_senha" placeholder="Confirmar Senha"><br><br>
-                        
+                        {{ form }}
                         <button type="submit" class="cadastrar">Cadastrar</button>
                         </form>
                 </div>

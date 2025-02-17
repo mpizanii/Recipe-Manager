@@ -74,8 +74,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend', 
+    'usuario.backends.EmailBackend',
 ]
+
+LOGIN_URL = '/usuario/login/'
 
 LANGUAGE_CODE = 'pt-br'
 

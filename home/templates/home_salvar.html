@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-    {% load static %}
     <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="div_cima">
-        <a href="{% url 'usuario:logout_view' %}" class="button_logout">
+        <a href="{{ url_for('usuario.logout') }}" class="button_logout">
             <i class="bi bi-arrow-bar-left">Sair</i>
         </a>
         <h1>
-            Bem vindo(a), {{ nome_usuario }}!
+            Bem vindo(a), {{ current_user.nome }}!
         </h1>   
-        <a href="{% url 'usuario:editar_perfil' %}"  class="button_perfil">
+        <a href="{{ url_for('home.editar_perfil') }}" class="button_perfil">
             <i class="bi bi-person-circle">Editar Perfil</i>
         </a>
     </div>
@@ -28,7 +26,7 @@
             <div id="modal_adicionar_alimento" style="display: none;">
                 <div class="modal_content">
                     <h2>Adicionar Alimentos</h2>
-                    <form method="POST">
+                    <form method="POST" action="{{ url_for('larder.adicionar_alimento') }}">
                         <label for="nome">Nome do alimento:</label><br>
                         <input type="text" name="nome" placeholder="Nome"><br><br>
     
@@ -43,7 +41,7 @@
             <div id="modal_deletar_alimento" style="display: none;">
                 <div class="modal_content">
                     <h2>Selecione os alimentos que deseja deletar:</h2>
-                    <form method="POST">
+                    <form method="POST" action="{{ url_for('larder.deletar_alimento') }}">
                         <ul>
                             {% if alimentos %}
                                 {% for alimento in alimentos %}
@@ -64,7 +62,7 @@
             <div id="modal_adicionar_receita" style="display: none;">
                 <div class="modal_content">
                     <h2>Adicionar Receita</h2>
-                    <form method="POST">
+                    <form method="POST" action="{{ url_for('recipes.adicionar_receita') }}">
                         <label for="nome">Nome:</label><br>
                         <input type="text" name="nome" placeholder="Nome"><br><br>
     
@@ -82,7 +80,7 @@
             <div id="modal_receita_ia" style="display: none;">
                 <div class="modal_content">
                     <h2>Selecione os alimentos que deseja adicionar a receita:</h2>
-                    <form method="POST">
+                    <form method="POST" action="{{ url_for('recipes.receita_ia') }}">
                         <ul>
                             {% if alimentos %}
                                 {% for alimento in alimentos %}
@@ -146,7 +144,7 @@
             <ol class="receitas">
                 {% if receitas %}
                     {% for receita in receitas %}
-                        <a >
+                        <a href="{{ url_for('recipes.receitas', id = (receita.id)) }}" >
                             <li>{{ receita.nome }}</li>
                         </a>
                     {% endfor %}

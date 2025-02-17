@@ -64,12 +64,14 @@ body {
     gap: 10px;
 }
 
-.inputs label {
+.formulario label {
+    display: block;
     margin-bottom: 5px;
     color: #FFFFFF;
 }
 
-.inputs input {
+.formulario input {
+    margin-bottom: 15px;
     width: 100%;
     border: none;
     border-radius: 10px;
@@ -80,7 +82,6 @@ body {
     outline: none;
     box-sizing: border-box;
 }
-
 .cadastrar {
     width: 100%;
     padding: 16px;
@@ -91,14 +92,6 @@ body {
     border-radius: 8px;
     background-color: #2196F3;
     cursor: pointer;
-}
-
-.flash-messages {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    width: 300px;
 }
 
 .alert {
