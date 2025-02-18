@@ -28,7 +28,7 @@ body {
     color: #00233f;
 }
 
-.div_esquerda img{
+.div_esquerda img {
     width: 30vw;
     height: auto;
 }
@@ -58,21 +58,30 @@ body {
     text-align: center;
 }
 
-.inputs_perfil, .inputs_senha {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.card p {
+    color: #FFFFFF;
+    font-size: medium;
+    margin: 10px 0;
+    text-align: center;
 }
 
-.inputs_perfil label, .inputs_senha label {
-    margin-bottom: 0;
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario label{
+    display: block;
+    margin-bottom: 2px;
     color: #FFFFFF;
 }
 
-.inputs_perfil input, .inputs_senha input {
+.formulario input{
     width: 100%;
     border: none;
     border-radius: 10px;
+    margin-bottom: 15px;
     padding: 15px;
     font-size: 12pt;
     background-color: #FFFFFF;
@@ -81,11 +90,7 @@ body {
     box-sizing: border-box;
 }
 
-.inputs_perfil{
-    border-bottom: 5px solid #FFFFFF;
-}
-
-.alterar_perfil, .alterar_senha {
+button {
     width: 100%;
     padding: 16px;
     margin-top: 10px;
@@ -97,19 +102,7 @@ body {
     cursor: pointer;
 }
 
-.alterar_perfil{
-    margin-bottom: 40px;
-}
-
-.flash-messages {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    width: 300px;
-}
-
-.flash {
+.alert {
     margin-bottom: 10px;
     padding: 15px;
     border-radius: 5px;
@@ -119,18 +112,10 @@ body {
     animation: fadeInOut 4s forwards;
 }
 
-.flash.info {
-    background-color: #3498db;
+.success {
+    background-color: #2ecc71;
 }
 
-.flash.success {
-    background-color: #2ecc71; 
-}
-
-.flash.warning {
-    background-color: #f1c40f; 
-}
-
-.flash.danger {
-    background-color: #e74c3c; 
+.error {
+    background-color: #e74c3c;
 }

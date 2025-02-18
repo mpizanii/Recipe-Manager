@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <div class="div_maior">
-        <div class="div_esquerda">
-            <h1>Por favor,<br>Faça login com as suas credenciais.</h1>
-            <img src="{% static 'img/chef.svg' %}" alt="chef">
-        </div>
-        <div class="div_direita">
-            <div class="card">
+{% block title %}Login{% endblock %}
+{% block mensagem %}Por favor, faça login com suas credenciais.{% endblock %}
+{% load static %}
+{% block imagem %}{% static 'img/chef.svg' %}{% endblock %}
+{% block titulo_form %}Login{% endblock %}
 
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert {{ message.tags }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
+{% block formulario %}
+    {{ form }}
+{% endblock %}
 
-                <h1>Login</h1>
+{% block botao%}
+    <button type="submit" class="botao">Entrar</button>
+{% endblock %}
 
-                <div class="inputs">
-                    <form method="POST" class="formulario"> 
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" class="entrar">Entrar</button>
-                    </form>
-                    <p>Não possui cadastro? <a href="{% url 'usuario:register' %}">Cadastre-se.</a> </p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+{% block link_extra %}
+    <p>Não possui cadastro? <a href="{% url 'usuario:register' %}">Cadastre-se.</a></p>
+{% endblock %}

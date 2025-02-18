@@ -1,62 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'editar_perfil.css' %}">
-</head>
-<body>
-    <div class="div_maior">
-        <div class="div_esquerda">
-            <h1>Preencha com os seus dados<br>E clique em alterar.<br></h1>
-            <img src="{% static 'img/cozinhando.svg' %}" alt="logo">
-        </div>
-        <div class="div_direita">
-            <div class="card">
+{% extends "base.html" %}
 
-                <div class="inputs_perfil">
-                    <form method="POST">
-                        {% csrf_token %}
+{% block title %}Editar Perfil{% endblock %}
+{% block mensagem %}Preencha seus dados e clique em alterar.{% endblock %}
+{% load static %}
+{% block imagem %}{% static 'img/cozinhando.svg' %}{% endblock %}
+{% block titulo_form %}Editar Perfil{% endblock %}
 
-                        <h1>Editar Perfil</h1>
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert {{ message.tags }}">{{ message }}</div>
-                            {% endfor %}
-                        {% endif %}
-
-                        <label for="nome">Nome:</label><br>
-                        <input type="text" name="nome" value="{{ request.user.username }}" placeholder="Nome"><br><br>
-
-                        <label for="email">Email:</label><br>
-                        <input type="email" name="email" value="{{ request.user.email }}" placeholder="Email"><br><br>
-
-                        <button type="submit" class="alterar_perfil">Alterar</button>
-                    </form>
-                </div>
-
-                <div class="inputs_senha">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <h1>Editar Senha</h1>
-                        <label for="senha">Senha Atual:</label><br>
-                        <input type="password" name="senha" placeholder="Senha Atual"><br><br>
-
-                        <label for="nova_senha">Nova senha:</label><br>
-                        <input type="password" name="nova_senha" placeholder="Nova senha"><br><br>
-
-                        <label for="confirmar_senha">Confirmar nova senha:</label><br>
-                        <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha"><br><br>
-
-                        <button type="submit" class="alterar_senha">Alterar</button>
-                    </form>
-                </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+{% block formulario %}
+<form method="POST" class="formulario">
+    {% csrf_token %}
+    {{ form_perfil }}
+    <button type="submit" class="alterar_perfil" name="button_perfil">Alterar</button>
+</form>
+<form method="POST" class="formulario">
+    {% csrf_token %}
+    <h1>Editar Senha</h1>
+    {{ form_senha }}
+    <button type="submit" class="alterar_senha" name="button_senha">Alterar</button>
+</form>
+{% endblock %}

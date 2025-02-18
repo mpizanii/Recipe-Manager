@@ -1,40 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+{% extends "base.html" %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'register.css' %}">
-</head>
-<body>
-    <div class="div_maior">
-        <div class="div_esquerda">
-            <h1>Por favor,<br>Preencha com os seus dados.</h1>
-            <img src="{% static 'img/sushi.svg' %}" alt="logo">
-        </div>
-        <div class="div_direita">
-            <div class="card">
+{% block title %}Cadastro{% endblock %}
+{% block mensagem %}Por favor, preencha com seus dados.{% endblock %}
+{% load static %}
+{% block imagem %}{% static 'img/sushi.svg' %}{% endblock %}
+{% block titulo_form %}Cadastro{% endblock %}
 
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class = "alert {{ message.tags }}"> {{ message }} </div>
-                    {% endfor %}
-                {% endif %}
+{% block formulario %}
+    {{ form }}
+{% endblock %}
 
-                <h1>Cadastro</h1>
-
-                <div class="inputs">
-                    <form method="POST" class="formulario">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" class="cadastrar">Cadastrar</button>
-                        </form>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+{% block botao%}
+    <button type="submit" class="botao">Cadastrar</button>
+{% endblock %}

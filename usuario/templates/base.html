@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Página{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <div class="div_maior">
+        <div class="div_esquerda">
+            <h1>{% block mensagem %}Bem-vindo!{% endblock %}</h1>
+            <img src="{% block imagem %}{% static 'img/default.svg' %}{% endblock %}" alt="Imagem">
+        </div>
+        
+        <div class="div_direita">
+            <div class="card">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+
+                <h1>{% block titulo_form %}Formulário{% endblock %}</h1>
+
+                <div class="inputs">
+                    <form method="POST" class="formulario">
+                        {% csrf_token %}
+                        {% block formulario %}{% endblock %}
+                        {% block botao %}{% endblock %}
+                    </form>
+                    {% block link_extra %}{% endblock %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

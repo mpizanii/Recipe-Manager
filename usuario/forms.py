@@ -1,5 +1,6 @@
 from django import forms
 from .models import Usuario
+from django.contrib.auth.forms import UserChangeForm
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
@@ -28,14 +29,34 @@ class CadastroForm(forms.ModelForm):
             "username": forms.TextInput(attrs={"placeholder": "Nome..."}),
             "email": forms.EmailInput(attrs={"placeholder": "E-mail..."}),
             "password": forms.PasswordInput(attrs={"placeholder": "Senha..."}),
-        }
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        senha = cleaned_data.get("password")
-        confirmar_senha = cleaned_data.get("confirmar_senha")
+        }  
 
-        if senha and confirmar_senha and senha != confirmar_senha:
-            self.add_error("confirmar_senha", "As senhas não coincidem")
 
-        return cleaned_data
+class EditarPerfilForm(UserChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(EditarPerfilForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
+
+    password = None
+
+    class Meta:
+        model = Usuario
+        fields = ['username', 'email']
+
+class EditarSenhaForm(forms.Form):
+    senha = forms.CharField(
+        label="Senha Atual",
+        widget=forms.PasswordInput(attrs={"placeholder": "Senha Atual..."}),
+        required=False,
+    )
+    nova_senha = forms.CharField(
+        label="Nova Senha",
+        widget=forms.PasswordInput(attrs={"placeholder": "Nova Senha..."}),
+        required=False,
+    )
+    confirmar_senha = forms.CharField(
+        label="Confirmar Senha",
+        widget=forms.PasswordInput(attrs={"placeholder": "Confirmar Senha..."}),
+        required=False,
+    )
