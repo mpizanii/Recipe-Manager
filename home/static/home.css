@@ -200,6 +200,6 @@ body {
     cursor: pointer;
 }
 
-#modal_deletar_alimento ul{
+#modal_deletar_alimento{
     list-style: none;
 }

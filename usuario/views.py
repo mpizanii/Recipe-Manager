@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Usuario
 from .forms import LoginForm, CadastroForm, EditarPerfilForm, EditarSenhaForm
 from django.contrib.auth.hashers import check_password, make_password
-from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 
 def login_view(request):

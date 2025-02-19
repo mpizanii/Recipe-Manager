@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario',
     'home',
+    'receitas',
 ]
 
 AUTH_USER_MODEL = 'usuario.Usuario'

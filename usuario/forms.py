@@ -43,6 +43,10 @@ class EditarPerfilForm(UserChangeForm):
     class Meta:
         model = Usuario
         fields = ['username', 'email']
+        labels = {
+            "username": "Nome",
+            "email": "E-mail",
+        }
 
 class EditarSenhaForm(forms.Form):
     senha = forms.CharField(

@@ -27,13 +27,12 @@
         <div class="modal">
             <div id="modal_adicionar_alimento" style="display: none;">
                 <div class="modal_content">
-                    <h2>Adicionar Alimentos</h2>
-                    <form method="POST">
-                        <label for="nome">Nome do alimento:</label><br>
-                        <input type="text" name="nome" placeholder="Nome"><br><br>
-    
-                        <label for="quantidade">Quantidade:</label><br>
-                        <input type="text" name="quantidade" placeholder="Quantidade"><br><br>
+                    <form method="POST">     
+
+                        <h2>Adicionar Alimento</h2>
+
+                        {% csrf_token %}
+                        {{ form_adicionar_alimentos }}
     
                         <button type="submit" class="adicionar">Adicionar</button>
                     </form>
@@ -42,20 +41,12 @@
     
             <div id="modal_deletar_alimento" style="display: none;">
                 <div class="modal_content">
-                    <h2>Selecione os alimentos que deseja deletar:</h2>
                     <form method="POST">
-                        <ul>
-                            {% if alimentos %}
-                                {% for alimento in alimentos %}
-                                    <li>
-                                        <input type= "checkbox" id="alimento_{{ alimento.id }}" name="alimentos" value="{{ alimento.id }}">
-                                        <label for="alimento_{{ alimento.id }}">{{ alimento.nome }} - {{ alimento.quantidade }}</label>
-                                    </li>
-                                {% endfor %}
-                            {% else %}
-                                <h2>Nenhum alimento cadastrado!</h2>
-                            {% endif %}
-                        </ul>
+
+                        <h2>Selecione os alimentos que deseja deletar:</h2>
+                        
+                        {% csrf_token %}
+                        {{ form_deletar_alimentos }}
                         <button type="submit", class="deletar">Deletar alimentos</button>
                     </form>
                 </div>
@@ -65,14 +56,9 @@
                 <div class="modal_content">
                     <h2>Adicionar Receita</h2>
                     <form method="POST">
-                        <label for="nome">Nome:</label><br>
-                        <input type="text" name="nome" placeholder="Nome"><br><br>
-    
-                        <label for="ingredientes">Ingredientes:</label><br>
-                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="1-...&#10;2-...&#10;3-..."></textarea><br><br>
+                        {% csrf_token %}
+                        {{ form_adicionar_receitas }}
 
-                        <label for="modo_preparo">Modo de preparo:</label><br>
-                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1-...&#10;2-...&#10;3-..."></textarea><br><br>
 
                         <button type="submit" class="adicionar">Adicionar</button>
                     </form>
