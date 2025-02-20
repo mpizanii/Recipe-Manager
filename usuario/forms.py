@@ -33,11 +33,6 @@ class CadastroForm(forms.ModelForm):
 
 
 class EditarPerfilForm(UserChangeForm):
-    def __init__(self, *args, **kwargs):
-        super(EditarPerfilForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.required = False
-
     password = None
 
     class Meta:

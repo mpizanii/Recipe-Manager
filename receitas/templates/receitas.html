@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ receita.nome }}</title>
-    <link rel="stylesheet" href="/static/receitas.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% load static %}
+    <link rel="stylesheet" href="/static/receitas.css">
 </head>
 <body>
     <div class="div_cima">
-        <a href="{{ url_for('home.home') }}" class="button_home">
+        <a href="{% url 'home:home' %}" class="button_home">
             <i class="bi bi-arrow-return-left">Retornar</i>
         </a>
         <h1>
@@ -32,15 +33,9 @@
             <div id="modal_editar_receita" style="display: none;">
                 <div class="modal_content">
                     <h2>Editar Receita</h2>
-                    <form method="POST" action="{{ url_for('recipes.editar_receita', id = (receita.id)) }}">
-                        <label for="nome">Nome:</label><br>
-                        <input type="text" name="nome" value="{{ receita.nome }}"><br><br>
-    
-                        <label for="ingredientes">Ingredientes:</label><br>
-                        <textarea id="ingredientes" name="ingredientes" rows="3" placeholder="1-...&#10;2-...&#10;3-...">{{ receita.ingredientes }}</textarea><br><br>
-    
-                        <label for="modo_preparo">Modo de preparo:</label><br>
-                        <textarea id="modo_preparo" name="modo_preparo" rows="3" placeholder="1-...&#10;2-...&#10;3-...">{{ receita.modo_preparo }}</textarea><br><br>
+                    <form method="POST" action="{% url 'receitas:editar_receita' receita.id %}">
+                        {% csrf_token %}
+                        {{ form_editar_receita }}
     
                         <button type="submit" class="confirmar">Confirmar</button>
                     </form>
@@ -64,7 +59,9 @@
 
     </div>
 
-    <form id="delete" method="POST" action="{{ url_for('recipes.deletar_receita', id=receita.id) }}" style="display: none;"></form>
+    <form id="delete" method="POST" action="{% url 'receitas:deletar_receita' receita.id %}" style="display: none;">
+        {% csrf_token %}
+    </form>
 
     <script>
         function confirmar_delecao() {

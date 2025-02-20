@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ nome }}</title>
-    <link rel="stylesheet" href="/static/receita_ia.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/receita_ia.css">
 </head>
 <body>
     <div class="div_cima">
-        <a href="{{ url_for('home.home') }}" class="button_home">
+        <a href="{% url 'home:home' %}" class="button_home">
             <i class="bi bi-arrow-return-left"></i> Retornar
         </a>
         <h1>
             {{ nome }}
         </h1>
-        <form action="{{ url_for('recipes.salvar_receita') }}" method="POST">
+        <form action="{% url 'receitas:salvar_receita_ia' %}" method="POST">
+            {% csrf_token %}
             <input type="hidden" name="nome" value="{{ nome }}">
             <input type="hidden" name="ingredientes" value="{{ ingredientes }}">
             <input type="hidden" name="modo_preparo" value="{{ modo_preparo }}">

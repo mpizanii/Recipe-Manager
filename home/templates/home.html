@@ -58,8 +58,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         {{ form_adicionar_receitas }}
-
-
+                        
                         <button type="submit" class="adicionar">Adicionar</button>
                     </form>
                 </div>
@@ -67,20 +66,11 @@
 
             <div id="modal_receita_ia" style="display: none;">
                 <div class="modal_content">
-                    <h2>Selecione os alimentos que deseja adicionar a receita:</h2>
-                    <form method="POST">
-                        <ul>
-                            {% if alimentos %}
-                                {% for alimento in alimentos %}
-                                    <li>
-                                        <input type= "checkbox" id="alimento_{{ alimento.id }}" name="alimentos" value="{{ alimento.id }}">
-                                        <label for="alimento_{{ alimento.id }}">{{ alimento.nome }} - {{ alimento.quantidade }}</label>
-                                    </li>
-                                {% endfor %}
-                            {% else %}
-                                <h2>Nenhum alimento cadastrado!</h2>
-                            {% endif %}
-                        </ul>
+                    <form method="POST" action = "{% url 'receitas:receita_ia' %}">
+                        {% csrf_token %}
+                        <h2>Selecione os alimentos que deseja adicionar a receita:</h2>
+                        
+                        {{ form_receita_ia }}
                         <button type="submit", class="confirmar">Confirmar</button>
                     </form>
                 </div>
@@ -93,11 +83,11 @@
                 Minha despensa
                 
                 <div class="acoes">
-                    <a href="#" class="adicionar_alimento" onclick="toggleModal('modal_adicionar_alimento')">
+                    <a class="adicionar_alimento" onclick="toggleModal('modal_adicionar_alimento')">
                         <i class="bi bi-plus"></i>
                     </a>
             
-                    <a href="#" class="deletar_alimento" onclick="toggleModal('modal_deletar_alimento')">
+                    <a class="deletar_alimento" onclick="toggleModal('modal_deletar_alimento')">
                         <i class="bi bi-x-lg"></i>
                     </a>
                 </div>
@@ -119,11 +109,11 @@
                 Minhas Receitas
 
                 <div class="funcoes">
-                    <a href="#" class="adicionar_receita" onclick="toggleModal('modal_adicionar_receita')">
+                    <a class="adicionar_receita" onclick="toggleModal('modal_adicionar_receita')">
                         <i class="bi bi-plus"></i>
                     </a>
     
-                    <a href="#" class="receita_ia" onclick="toggleModal('modal_receita_ia')">
+                    <a class="receita_ia" onclick="toggleModal('modal_receita_ia')">
                         <i class="bi bi-robot"></i>
                     </a>
                 </div>
@@ -132,7 +122,7 @@
             <ol class="receitas">
                 {% if receitas %}
                     {% for receita in receitas %}
-                        <a >
+                        <a href="{% url 'receitas:receita' receita.id %}">
                             <li>{{ receita.nome }}</li>
                         </a>
                     {% endfor %}
