@@ -1,14 +1,14 @@
 # Recipe Manager
 
-- O Recipe Manager é uma aplicação web desenvolvida em Python Flask com o objetivo de gerenciar receitas e alimentos disponíveis na despensa. O sistema permite organizar melhor os itens da cozinha, criar receitas personalizadas e até gerar receitas criativas utilizando a API do Gemini, uma inteligência artificial avançada.
-- Com um design intuitivo, a aplicação oferece funcionalidades de CRUD (Criar, Ler, Atualizar e Deletar) para alimentos e receitas, login seguro, personalização de perfil e integração com o banco de dados MySQL para armazenamento confiável.
+- O Recipe Manager é uma aplicação web desenvolvida em Python Django com o objetivo de gerenciar receitas e alimentos disponíveis na despensa. O sistema permite organizar melhor os itens da cozinha, criar receitas personalizadas e até gerar receitas criativas utilizando a API do Gemini, uma inteligência artificial avançada.
+- Com um design intuitivo, a aplicação oferece funcionalidades de CRUD (Criar, Ler, Atualizar e Deletar) para alimentos e receitas, login seguro, personalização de perfil e integração com o banco de dados para armazenamento.
 
 ## Funcionalidades
 
 ### Principais Recursos
 
 1. **Sistema de login e cadastro de usuários**
-    - Backend em Python Flask e frontend com HTML, CSS e JavaScript.
+    - Backend em Python Django e frontend com HTML, CSS e JavaScript.
     - Criação e autenticação segura de usuários.
 2. **Gerenciamento de Despensa (CRUD de Alimentos)**
     - Adicione, edite, visualize e exclua itens da despensa virtual.
@@ -27,7 +27,6 @@
 ### Pré-Requisitos
 
 - Python 3.9 ou superior
-- MySQL instalado no sistema
 - Bibliotecas listadas no arquivo [requirements.txt](./requirements.txt)
 
 ### Passos de Instalação
@@ -51,18 +50,16 @@
 - Crie um arquivo `.env` na raiz do projeto.
 - Adicione as variáveis necessárias seguindo o exemplo em [.env.example](./.env.example)
 - **Substitua**: 
-    - `your-secret-key` por sua chave secreta. 
-    - `seu_usuario:sua_senha` com suas credenciais MySQL (Se não possuir mysql instalado, instale [aqui](https://dev.mysql.com/downloads/installer/).)
-    - `your-gemini-api-key` pela chave da API Gemini (Consulte a sua chave [aqui](https://aistudio.google.com/app/apikey).)
+    - `GOOGLE_API_KEY` pela chave da API Gemini (Consulte a sua chave [aqui](https://aistudio.google.com/app/apikey).)
 
 ## Uso
 
 1. **Execute o projeto**
     ```bash
-    python run.py
+    python manage.py runserver
     ```
 2. **Acesse a aplicação**
-    - Após iniciar o projeto, abra o navegador e acesse: http://127.0.0.1:5000/.
+    - Após iniciar o projeto, abra o navegador e acesse: http://127.0.0.1:8000/.
     - Utilize as credenciais cadastradas para fazer login ou cadastre-se como novo usuário.
 3. **Funcionalidades Disponíveis**
     1. **Adicionar alimentos:** Insira itens disponíveis na despensa.
@@ -73,29 +70,6 @@
     6. **Editar ou deletar receitas:** Gerencie receitas existentes.
     7. **Personalize seu perfil:** Atualize informações pessoais.
     8. **Saia da Aplicação:** Encerre a sessão com segurança.
-
-## Estrutura do Projeto
-
-```plaintext
-recipe/
-├── app.py                # Configurações iniciais do Flask
-├── models/
-│   └── models.py         # Modelos do banco de dados
-├── routes/
-│   ├── home.py           # Rotas da página principal
-│   ├── larder.py         # Rotas de alimentos
-│   ├── login.py          # Rotas de autenticação
-│   └── recipes.py        # Rotas de receitas
-├── static/               # Arquivos estáticos (CSS e imagens)
-├── templates/            # Arquivos HTML
-├── migrations/           # Scripts de migração do banco de dados
-├── .env.example          # Exemplo de configuração de variáveis
-├── .gitattributes        # Configurações de atributos do Git
-├── .gitignore            # Diretórios e arquivos ignorados pelo Git
-├── requirements.txt      # Dependências do projeto
-├── run.py                # Arquivo principal
-└── README.md             # Documentação do projeto
-```
 
 ## Contribuindo
 Contribuições são bem-vindas! Siga as etapas abaixo para colaborar:
