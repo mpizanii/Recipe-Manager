@@ -109,7 +109,7 @@ def receita_ia(request):
     form = GeminiReceitaForm(request.POST or None, usuario_id = usuario_id)
     gemini_key = os.getenv('GOOGLE_API_KEY')
     genai.configure(api_key=gemini_key)
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-2.0-flash")
 
     if request.method == "POST":
         if form.is_valid():
