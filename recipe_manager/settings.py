@@ -95,4 +95,10 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'usuario/static',  
+    BASE_DIR / 'home/static',     
+    BASE_DIR / 'receitas/static', 
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
