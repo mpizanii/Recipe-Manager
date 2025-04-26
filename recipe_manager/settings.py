@@ -105,3 +105,7 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-813e0.up.railway.app',  # Substitua pelo domínio real do seu app no Railway
+]
